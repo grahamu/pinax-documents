@@ -1,4 +1,4 @@
-from test_plus.test import TestCase as PlusTestCase
+from test_plus.test import CBVTestCase as PlusTestCase
 
 
 class TestCase(PlusTestCase):
