@@ -52,7 +52,8 @@ class TestFolders(TestViews):
         parent_folder = Folder.objects.create(name="Parent", author=self.user)
 
         querystring_data = {"p": parent_folder.pk}
-        response = self.get(FolderCreate, data=querystring_data)
+        response = self.get(FolderCreate, p=parent_folder.pk)
+##        response = self.get(FolderCreate, querystring_data)
         self.response_200(response)
         self.assertContext("parent", parent_folder)
 
@@ -61,7 +62,7 @@ class TestFolders(TestViews):
         Ensure GET fails if "p" querystring is invalid.
         """
         querystring_data = {"p": 555}
-        response = self.get(FolderCreate, data=querystring_data)
+        response = self.get(FolderCreate, querystring_data)
         self.response_404(response)
 
     def test_post_create_without_parent(self):
